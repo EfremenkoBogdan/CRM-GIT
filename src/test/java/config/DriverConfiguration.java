@@ -14,5 +14,6 @@ public class DriverConfiguration {
         Configuration.screenshots  = ConfigProvider.TEST_CONFIGURATION.screenshots();
         Configuration.savePageSource =  ConfigProvider.TEST_CONFIGURATION.savePageSource();
         Configuration.timeout = ConfigProvider.TEST_CONFIGURATION.timeout();
+        Configuration.downloadsFolder = "target/downloads";
     }
 }
