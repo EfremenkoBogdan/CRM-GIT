@@ -12,6 +12,7 @@ public class MainPage {
 
     private final SelenideElement dropDownToggle = $("#nav-menu-dropdown");
     private final SelenideElement currentUserName =  $x("//ul[@class ='dropdown-menu']//a[contains(@href, 'User/')]");
+    private final SelenideElement logoutBtn = $x ("//a[@data-name = 'logout']");
 
     public MainPage() {
         dropDownToggle.shouldBe(visible);
@@ -19,15 +20,19 @@ public class MainPage {
 
     @Step("Нажать кнопку  - 'Выпадающий список 3 точки'")
     public MainPage pressDownToggle() {
-        dropDownToggle.shouldBe(visible);
         dropDownToggle.click();
         return this;
     }
 
     @Step ("Нажать кнопку -'Текущий пользователь'")
     public UserSettingPage pressUserName() {
-        currentUserName.shouldBe(visible);
         currentUserName.click();
         return Selenide.page(UserSettingPage.class);
+    }
+
+    @Step ("Нажать кнопку -'Log out'")
+    public LoginPage pressLogout() {
+        logoutBtn.click();
+        return Selenide.page(LoginPage.class);
     }
 }

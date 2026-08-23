@@ -10,13 +10,13 @@ import java.io.File;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
-public class DocumentPage {
+public class   DocumentPage {
 
-    private SelenideElement downloadBtn = $x("//td[@data-name='file']//a[contains (@title, '.pdf')]");
-    private SelenideElement createDocumentBtn = $x ("//a[@data-name = 'quickCreate']");
-    private SelenideElement attachFileBtn  = $("input[type='file']");
-    private SelenideElement saveBtn = $x("//button[@data-name = 'save']");
-
+    private final SelenideElement downloadBtn = $x("//td[@data-name='file']//a[@href]");
+    private final SelenideElement createDocumentBtn = $x ("//a[@data-name = 'quickCreate']");
+    private final SelenideElement attachFileBtn  = $("input[type='file']");
+    private final SelenideElement saveBtn = $x("//button[@data-name = 'save']");
+    private final SelenideElement nameImp = $("input[data-name='name']");
 
     @Step ("Скачиваем документ")
     public File clickDownloadBtn() {
@@ -28,7 +28,6 @@ public class DocumentPage {
 
     @Step ("Нажать на кнопку - Create Document")
     public DocumentPage clickCreateDocumentBtn() {
-        createDocumentBtn.shouldBe(visible);
         createDocumentBtn.click();
         return this;
     }
@@ -36,14 +35,13 @@ public class DocumentPage {
     @Step ("Прикрепить файл")
     public DocumentPage attachFile(File file) {
         attachFileBtn.should(Condition.enabled).uploadFile(file);
+       nameImp.should(Condition.value(file.getName()));
         return this;
     }
 
 
     @Step ("Нажать на кнопку - Save")
-    public DocumentPage clickSaveBtn() throws InterruptedException {
-        saveBtn.shouldBe(visible);
-        sleep(100);
+    public DocumentPage clickSaveBtn()  {
         saveBtn.click();
         return this;
     }

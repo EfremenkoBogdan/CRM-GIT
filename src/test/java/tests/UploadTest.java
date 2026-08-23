@@ -9,10 +9,10 @@ import java.io.File;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class UploadTest {
-    private final String login = "admin";
-    private final String password = "admin";
-    File file = new File("src/test/resources/selenide-file-xls-pdf.pdf");
+public class    UploadTest extends BaseTest {
+
+
+    private final File file = new File("src/test/resources/selenide-file-xls-pdf.pdf");
 
     @Test
     @DisplayName("Загрузка файла PDF")

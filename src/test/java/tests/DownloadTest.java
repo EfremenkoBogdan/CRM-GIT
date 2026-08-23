@@ -13,8 +13,7 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.open;
 
 public class DownloadTest extends BaseTest{
-    private final String login = "admin";
-    private final String password = "admin";
+
 
     @Test
     @DisplayName("Скачивание файла PDF")

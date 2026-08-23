@@ -6,16 +6,16 @@ import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 
 public class LoginTestFailed extends BaseTest{
-    private final String login = "admin123";
-    private final String password = "admin123";
+    private final String loginWithError = "admin123";
+    private final String passwordWithError = "admin123";
 
     @Test
     @DisplayName("Ошибка при входе - Логин и пароль неверные")
     public void testLoginWithError() {
 
         Selenide.open("", LoginPage.class)
-                .setLogin(login)
-                .setPassword(password)
+                .setLogin(loginWithError)
+                .setPassword(passwordWithError)
                 .pressButtonWithError()
                 .appearanceAlert();
 
