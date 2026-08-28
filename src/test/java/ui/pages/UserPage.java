@@ -1,4 +1,4 @@
-package pages;
+package ui.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -6,7 +6,6 @@ import io.qameta.allure.Step;
 
 import java.io.File;
 import java.time.Duration;
-import java.util.Random;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
@@ -22,7 +21,7 @@ public class UserPage {
     private final SelenideElement passwordConfirmField = $x ("//input[@data-name='passwordConfirm']");
     private final SelenideElement attachFileBtn  = $("input[type='file']");
     private final SelenideElement submitBtn = $x ("//button[@data-name='crop']");
-
+    private final String genderDropDown = ".option[data-value='%s']";
     public UserPage () {
         UsersBtn.shouldBe(visible);
     }
@@ -36,7 +35,7 @@ public class UserPage {
     @Step ("Заполнить поле - Gender")
     public UserPage setGender (String value) {
         genderDropDownToggle.click();
-        $(String.format(".option[data-value='%s']", value))
+        $(genderDropDown.formatted (value))
                 .shouldBe(visible, Duration.ofSeconds(10))
                 .click();
         return this;
@@ -57,6 +56,7 @@ public class UserPage {
     @Step ("Нажать кнопку - Сохранить")
     public UserPage pressSaveBtn () {
         saveBtn.click();
+        sleep(1000);
         return this;
     }
 

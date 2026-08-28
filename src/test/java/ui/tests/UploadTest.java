@@ -1,9 +1,9 @@
-package tests;
+package ui.tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pages.DocumentPage;
-import pages.LoginPage;
+import ui.pages.DocumentPage;
+import ui.pages.LoginPage;
 
 import java.io.File;
 

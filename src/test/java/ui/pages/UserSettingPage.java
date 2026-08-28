@@ -1,6 +1,5 @@
-package pages;
+package ui.pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
@@ -20,8 +19,9 @@ public class UserSettingPage {
 
     @Step("Проверить, что поле 'expectedName' совпадает с {expectedName}")
     public UserSettingPage checkUserName (String expectedName) {
-        Assertions.assertTrue($("div[data-name='userName']").getText().contains(expectedName),
-                "Имя пользователя не совпадает с " + expectedName);
+        String actualName = $("div[data-name='userName']").getText().toLowerCase();
+        Assertions.assertTrue(actualName.contains(expectedName.toLowerCase()),
+                "Имя пользователя не совпадает с %s".formatted(expectedName));
         return this;
     }
 

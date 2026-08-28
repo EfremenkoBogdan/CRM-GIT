@@ -1,16 +1,13 @@
-package tests;
+package ui.tests;
 
-import com.codeborne.xlstest.XLS;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pages.DocumentPage;
-import pages.LoginPage;
-import utils.PDFUtils;
+import ui.pages.DocumentPage;
+import ui.pages.LoginPage;
 import utils.XlsUtils;
 
 import java.io.File;
-import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
 
