@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ui.pages.LoginPage;
 
-public class LoginTest extends BaseTest{
+public class LoginUiTest extends BaseUiTest {
 
     @Test
     @DisplayName("Проверка заполнения полей")

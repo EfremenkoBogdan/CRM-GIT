@@ -11,7 +11,7 @@ import java.io.File;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class DownloadXlsTest extends BaseTest{
+public class DownloadXlsUiTest extends BaseUiTest {
 
 
     @Test

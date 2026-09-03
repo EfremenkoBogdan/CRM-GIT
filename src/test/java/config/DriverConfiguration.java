@@ -5,7 +5,7 @@ import com.codeborne.selenide.Configuration;
 public class DriverConfiguration {
     public static void setupDriver (){
 
-        Configuration.baseUrl = ConfigProvider.TEST_CONFIGURATION.baseUrl();
+        Configuration.baseUrl = ConfigProvider.TEST_CONFIGURATION.baseUiUrl();
         Configuration.browser = ConfigProvider.TEST_CONFIGURATION.browser();
         Configuration.browserSize = ConfigProvider.TEST_CONFIGURATION.browserSize();
         Configuration.pageLoadTimeout = ConfigProvider.TEST_CONFIGURATION.pageLoadTimeout();

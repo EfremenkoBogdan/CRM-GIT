@@ -1,6 +1,5 @@
 package ui.tests;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import config.DriverConfiguration;
 import extensions.AllureExtensions;
@@ -11,7 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import static com.codeborne.selenide.Selenide.open;
 
 @ExtendWith(AllureExtensions.class)
-public abstract class BaseTest {
+public abstract class BaseUiTest {
 
 
     protected final String login = "admin";

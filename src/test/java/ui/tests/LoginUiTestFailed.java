@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ui.pages.LoginPage;
 
-public class LoginTestFailed extends BaseTest{
+public class LoginUiTestFailed extends BaseUiTest {
     private final String loginWithError = "admin123";
     private final String passwordWithError = "admin123";
 

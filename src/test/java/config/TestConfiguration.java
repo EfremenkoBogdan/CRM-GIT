@@ -3,7 +3,7 @@ package config;
 import org.aeonbits.owner.Config;
 @Config.Sources("classpath:test.properties")
 public interface TestConfiguration extends Config  {
-    String baseUrl ();
+    String baseUiUrl ();
     String browser ();
     String browserSize ();
     Integer  pageLoadTimeout ();
@@ -12,4 +12,5 @@ public interface TestConfiguration extends Config  {
     boolean screenshots ();
     boolean savePageSource ();
     Integer  timeout();
+    String baseApiUrl();
 }

@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class DownloadTest extends BaseTest{
+public class DownloadUiTest extends BaseUiTest {
 
 
     @Test

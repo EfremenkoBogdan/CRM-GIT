@@ -9,7 +9,7 @@ import java.io.File;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class    UploadTest extends BaseTest {
+public class UploadUiTest extends BaseUiTest {
 
 
     private final File file = new File("src/test/resources/selenide-file-xls-pdf.pdf");

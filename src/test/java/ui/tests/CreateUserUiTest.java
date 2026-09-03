@@ -9,7 +9,7 @@ import java.io.File;
 import static com.codeborne.selenide.Selenide.open;
 import static utils.RandomUtils.FAKER;
 
-public class CreateUserTest extends BaseTest {
+public class CreateUserUiTest extends BaseUiTest {
 
     private final File file = new File("src/test/resources/777.jpg");
 
