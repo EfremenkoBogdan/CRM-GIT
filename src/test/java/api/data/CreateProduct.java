@@ -1,11 +1,18 @@
 package api.data;
 
 import api.pojo.request.ProductPost;
-import api.pojo.response.productList.Product;
+import static utils.RandomUtils.FAKER;
 
 public class CreateProduct {
 
     public static ProductPost getProduct () {
-        return new ProductPost (1, "Заголовок", 100.00, "Описание", "Категория", "Картинка");
+         return ProductPost.builder()
+                 .id(FAKER.number().randomDigit())
+                 .title(FAKER.commerce().productName())
+                 .price(Double.parseDouble(FAKER.commerce().price(10.0, 500.0)))
+                 .description (FAKER.lorem().paragraph(5))
+                 .category (FAKER.commerce().department())
+                 .image(FAKER.internet().image())
+                 .build();
     }
 }

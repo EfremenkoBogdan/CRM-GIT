@@ -13,4 +13,8 @@ public interface TestConfiguration extends Config  {
     boolean savePageSource ();
     Integer  timeout();
     String baseApiUrl();
+    String crmApiUrl();
+    String authLogin();
+    String authPassword();
+    String appUserEndpoint();
 }

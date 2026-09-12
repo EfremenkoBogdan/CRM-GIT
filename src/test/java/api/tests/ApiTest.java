@@ -1,12 +1,16 @@
 package api.tests;
 
+import api.controllers.ProductController;
+import api.controllers.UserController;
 import api.data.CreateProduct;
 import api.data.CreateRandomData;
+import api.enums.StatusCode;
+import api.pojo.request.ProductPost;
 import api.pojo.response.productList.Product;
 import api.pojo.response.userPost.User;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -16,32 +20,30 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class ApiTest extends BaseApiTest {
 
     @Test
+    @DisplayName("Проверка конкретного юзера в списке юзеров")
     public void testGetAllUsers(){
-        List<User> usersResponse =   RestAssured.given()
+        String expectedName ="john";
+        List<User> usersResponse =   UserController.getAllUsers()
                 .log().all()
-                .get("/users")
-                .then()
-                .log().all()
-                .statusCode(200)
+                .statusCode(StatusCode.OK.getCode())
                 .body("", Matchers.hasSize(10))
                 .extract()
                 .jsonPath()
                 .getList(".", User.class);
 
-        usersResponse.stream().filter(user -> user.getName().getFirstname().equals("jonh"));
+        System.out.println(usersResponse);
+        boolean isExist = usersResponse.stream().anyMatch(user -> user.getName().getFirstname().equals(expectedName));
+        Assertions.assertTrue(isExist, "User с именем %s не найден".formatted(expectedName));
     }
 
     @Test
+    @DisplayName("Проверка конкретного юзера при получении по id")
     public void testGetSingleUser (){
         int id = 5;
         String city = "san Antonio";
-        RestAssured.given()
+            UserController.getSingleUser(id)
                 .log().all()
-                .pathParam("id", id)
-                .get("/users/{id}")
-                .then()
-                .log().all()
-                .statusCode(200)
+                .statusCode(StatusCode.OK.getCode())
                 .body("id", Matchers.equalTo(id))
                 .body("address.city", Matchers.equalTo(city))
                 .body("address.zipcode", Matchers.matchesPattern("\\d{5}-\\d{4}"));
@@ -49,49 +51,43 @@ public class ApiTest extends BaseApiTest {
     }
 
     @Test
-    public void postCreateUser () {
-        RestAssured.given()
-                .contentType(ContentType.JSON)
+    @DisplayName("Создание нового юзера")
+    public void testPostCreateUser () {
+           UserController.postCreateUser(CreateRandomData.getRandomBodyUserPost())
                 .log().all()
-                .body(CreateRandomData.getRandomBodyUserPost())
-                .post("/users")
-                .then()
-                .log().all()
-                .statusCode(201)
+                .statusCode(StatusCode.CREATED.getCode())
                 .body("id", Matchers.notNullValue());
     }
 
     @Test
+    @DisplayName("Проверка конкретного продукта по описанию в списке продуктов")
     public void testGetAllProducts(){
-        List<Product> productsResponse =  RestAssured.given()
+
+        String expectedDescription = "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.";
+
+        List<Product> productsResponse = ProductController.getAllProduct()
                 .log().all()
-                .get("/Products")
-                .then()
-                .log().all()
-                .statusCode(200)
+                .statusCode(StatusCode.OK.getCode())
                 .extract()
                 .jsonPath()
                 .getList(".", Product.class);
 
         Product foundProduct = productsResponse.stream()
                 .filter(product -> product.getDescription()
-                        .equals("From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection."))
+                        .equals(expectedDescription))
                 .findFirst()
                 .orElse(null);
-        assertNotNull(foundProduct);
+        assertNotNull(foundProduct, "Продукт с указанным Description не найден");
     }
 
     @Test
-    public void postCreateProduct (){
-        String title = "Заголовок";
-        RestAssured.given()
-                .contentType(ContentType.JSON)
+    @DisplayName("Создание нового продукта")
+    public void testPostCreateProduct (){
+        ProductPost newProduct = CreateProduct.getProduct();
+        String title = newProduct.getTitle();
+       ProductController.postCreateProduct(newProduct)
                 .log().all()
-                .body(CreateProduct.getProduct())
-                .post("/Products")
-                .then()
-                .log().all()
-                .statusCode(201)
+                .statusCode(StatusCode.CREATED.getCode())
                 .body("title", Matchers.equalTo(title));
     }
 }
