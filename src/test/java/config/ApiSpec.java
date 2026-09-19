@@ -25,4 +25,11 @@ public class ApiSpec {
                 ));
         return b.build();
     }
+
+    public static RequestSpecification withApiKey(String apiKey) {
+        return new RequestSpecBuilder()
+                .setContentType(ContentType.JSON)
+                .addHeader("X-Api-Key", apiKey)
+                .build();
+    }
 }

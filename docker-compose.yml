@@ -10,6 +10,9 @@ services:
       MARIADB_USER: espocrm
       MARIADB_PASSWORD: database_password
 
+    ports:
+      - "3307:3306"
+
     volumes:
       - espocrm-db:/var/lib/mysql
 

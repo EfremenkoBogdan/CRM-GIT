@@ -1,5 +1,6 @@
 package ui.tests;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ui.pages.*;
@@ -8,7 +9,7 @@ import java.io.File;
 
 import static com.codeborne.selenide.Selenide.open;
 import static utils.RandomUtils.FAKER;
-
+@Slf4j
 public class CreateUserUiTest extends BaseUiTest {
 
     private final File file = new File("src/test/resources/777.jpg");
@@ -24,6 +25,7 @@ public class CreateUserUiTest extends BaseUiTest {
     @DisplayName("Создание нового пользователя")
 
     public void CreateNewUser (){
+        log.info("Процесс создания нового пользователя");
         open("", LoginPage.class)
                 .setLogin(login)
                 .setPassword(password)

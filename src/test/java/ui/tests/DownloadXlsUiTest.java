@@ -1,5 +1,6 @@
 package ui.tests;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,13 +11,14 @@ import utils.XlsUtils;
 import java.io.File;
 
 import static com.codeborne.selenide.Selenide.open;
-
+@Slf4j
 public class DownloadXlsUiTest extends BaseUiTest {
 
 
     @Test
     @DisplayName("Скачивание файла Xls")
     public void downloadXls() {
+        log.info("Процесс скачивание файла Xls");
         open("", LoginPage.class)
                 .setLogin(login)
                 .setPassword(password)

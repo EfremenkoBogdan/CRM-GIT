@@ -11,10 +11,13 @@ public interface TestConfiguration extends Config  {
     boolean headless ();
     boolean screenshots ();
     boolean savePageSource ();
-    Integer  timeout();
+    Integer timeout();
     String baseApiUrl();
     String crmApiUrl();
     String authLogin();
     String authPassword();
     String appUserEndpoint();
+    String dbUrl();
+    String dbUser ();
+    String dbPassword ();
 }

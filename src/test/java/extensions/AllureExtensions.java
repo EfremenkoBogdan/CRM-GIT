@@ -3,7 +3,7 @@ package extensions;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;
-import utils.AllureAttachments;
+import utils.allure.AllureAttachments;
 
 public class AllureExtensions implements TestWatcher {
 
