@@ -16,9 +16,10 @@ public class CrmDbClient {
     /**
      * Получает API-ключ для пользователя с типом 'api'.
      */
-    public static ApiUser  getApiKey() {
-        String sql = "SELECT user_name, api_key FROM `user` " +
-                     "WHERE type = 'api' LIMIT 1";
+    public static ApiUser getApiKey() {
+        String sql = """
+                SELECT user_name, api_key FROM `user`
+                WHERE type = 'api' LIMIT 1""";
 
         try (Connection conn = getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
