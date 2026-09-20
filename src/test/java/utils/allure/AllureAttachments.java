@@ -6,6 +6,7 @@ import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 
 public class AllureAttachments {
+
     @Attachment (value = "Текущий URL", type = "text/plain")
     public static String attachCurrentUrl(){
         return WebDriverRunner.getWebDriver().getCurrentUrl();
