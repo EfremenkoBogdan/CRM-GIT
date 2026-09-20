@@ -1,12 +1,9 @@
-package api.crm.db;
-import configs.ConfigProvider;
-import api.crm.dto.ApiUser;
+package db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import api.crm.dto.ApiUser;
+import configs.ConfigProvider;
+
+import java.sql.*;
 
 public class CrmDbClient {
 
@@ -21,7 +18,7 @@ public class CrmDbClient {
      */
     public static ApiUser  getApiKey() {
         String sql = "SELECT user_name, api_key FROM `user` " +
-                "WHERE type = 'api' LIMIT 1 ";
+                     "WHERE type = 'api' LIMIT 1";
 
         try (Connection conn = getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);

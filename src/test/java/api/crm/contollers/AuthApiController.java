@@ -11,7 +11,7 @@ public class AuthApiController {
     @Step("Отправка запроса на авторизацию")
     public static ValidatableResponse getUser() {
         return given()
-                .spec(ApiSpec.base())
+                .spec(ApiSpec.auth())
                 .get(ApiEndPoints.AUTH_CRM.getPath())
                 .then();
     }

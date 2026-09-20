@@ -13,12 +13,11 @@ import utils.allure.CustomTpl;
 @ExtendWith({TestLoggingExtension.class})
 public abstract class BaseCrmTest {
 
-    protected static String apiKey;
-
     @BeforeAll
     public static void setup() {
         log.info("Инициализация тестового окружения");
         RestAssured.baseURI = ConfigProvider.TEST_CONFIGURATION.crmApiUrl();
         RestAssured.filters(CustomTpl.customLogFilter().getFilter());
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
     }
 }
