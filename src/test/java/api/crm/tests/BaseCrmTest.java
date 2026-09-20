@@ -1,6 +1,6 @@
 package api.crm.tests;
 
-import config.ConfigProvider;
+import configs.ConfigProvider;
 import extensions.TestLoggingExtension;
 import io.restassured.RestAssured;
 import lombok.extern.slf4j.Slf4j;

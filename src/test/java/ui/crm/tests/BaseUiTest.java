@@ -1,8 +1,7 @@
 package ui.crm.tests;
 
 import com.codeborne.selenide.Selenide;
-import config.DriverConfiguration;
-import extensions.AllureExtensions;
+import configs.DriverConfiguration;
 import extensions.TestLoggingExtension;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;

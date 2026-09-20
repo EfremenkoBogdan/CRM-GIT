@@ -1,5 +1,5 @@
 package docs.fakestore.tests;
-import config.ConfigProvider;
+import configs.ConfigProvider;
 import io.restassured.RestAssured;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;

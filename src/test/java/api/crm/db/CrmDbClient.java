@@ -1,5 +1,5 @@
 package api.crm.db;
-import config.ConfigProvider;
+import configs.ConfigProvider;
 import api.crm.dto.ApiUser;
 
 import java.sql.Connection;
