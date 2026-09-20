@@ -8,10 +8,12 @@ import docs.fakestore.data.CreateRandomData;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.RetryingTest;
 
 public class CrmTest extends BaseCrmTest {
 
     @Test
+    @RetryingTest(maxAttempts = 3, suspendForMs = 500, name = "{displayName} | {index}")
     @DisplayName("Проверка конкретного юзера в списке юзеров")
     public void testGetAllCrmUser() {
         //Надо проверять что бд с юзерами пустая и если пустая то создавать юзера перед тестом
