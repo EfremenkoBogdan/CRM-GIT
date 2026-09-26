@@ -53,12 +53,18 @@ public class CrmDbClient {
         return null;
     }
 
-    public static ApiUser getApiKey() {
+    public static ApiUser getApiKeyFromDb() {
+
         ApiUser user = getUserFromDb();
         if (user != null && user.getApiKey() != null && !user.getApiKey().isBlank()) {
             return user;
         }
-        String newKey = createApiUserAndGetKey();
-        return new ApiUser("", newKey, "", "", "api", true);
+        createApiUserAndGetKey();
+        ApiUser created = getUserFromDb();
+        if (created == null) {
+            throw new IllegalStateException(
+                    "createApiUserAndGetKey() отработал, но пользователь в БД не найден");
+        }
+        return created;
     }
 }

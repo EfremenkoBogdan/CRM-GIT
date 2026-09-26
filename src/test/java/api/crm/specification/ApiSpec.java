@@ -12,7 +12,7 @@ public class ApiSpec {
     public static RequestSpecification authApi() {
         return new RequestSpecBuilder()
                 .setBaseUri(ConfigProvider.TEST_CONFIGURATION.crmApiUrl())
-                .addHeader("X-Api-Key", CrmDbClient.getUserFromDb().getApiKey())
+                .addHeader("X-Api-Key", CrmDbClient.getApiKeyFromDb().getApiKey())
                 .setContentType(ContentType.JSON)
                 .build();
     }
