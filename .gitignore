@@ -38,3 +38,8 @@ build/
 ### Mac OS ###
 .DS_Store
 /.idea/
+
+### Test artifacts ###
+.allure/
+allure-results/
+/logs/
