@@ -1,10 +1,12 @@
 package api.crm.tests;
 
+import annotations.Run;
 import api.crm.contollers.AuthApiController;
 import api.crm.contollers.CrmUserController;
 import api.crm.db.CrmDbClient;
 import api.crm.dto.ApiUser;
 import api.crm.pojo.request.UserCrmPost;
+import org.junitpioneer.jupiter.RetryingTest;
 import utils.CreateRandomData;
 import api.crm.enums.StatusCode;
 import org.hamcrest.Matchers;
@@ -15,7 +17,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class CrmTest extends BaseCrmTest {
 
+    @Run
     @Test
+    @RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
     @DisplayName("Проверка конкретного юзера в списке юзеров")
     public void testGetAllCrmUser() {
         CrmUserController.getAllUsers().log().all()
@@ -27,7 +31,9 @@ public class CrmTest extends BaseCrmTest {
                 .body("list[0].isActive", Matchers.equalTo(true));
     }
 
+    @Run
     @Test
+    @RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
     @DisplayName("Логин под юзером с API key и проверка ответа")
     public void userProfileTest() {
         AuthApiController.getUser()
@@ -45,7 +51,10 @@ public class CrmTest extends BaseCrmTest {
                 .body("user.isActive", Matchers.equalTo(dbUser.getIsActive()));
     }
 
+
+    @Run
     @Test
+    @RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
     @DisplayName("Создание нового пользователя")
     public void testPostCreateNewUser() {
         UserCrmPost newUser = CreateRandomData.getRandomCrmUser();
