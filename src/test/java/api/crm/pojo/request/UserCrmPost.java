@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+//класс для создания обычного юзера
 @AllArgsConstructor
 @Data
 @Builder
