@@ -1,7 +1,7 @@
 package api.crm.db;
 
 import api.crm.dto.ApiUser;
-import config.ConfigProvider;
+import configs.ConfigProvider;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,17 +50,15 @@ public class CrmDbClient {
     }
 
     public static ApiUser getApiKeyFromDb() {
-
         ApiUser user = getUserFromDb();
         if (user != null && user.getApiKey() != null && !user.getApiKey().isBlank()) {
             return user;
         }
         createApiUserAndGetKey();
-        ApiUser created = getUserFromDb();
-        if (created == null) {
-            throw new IllegalStateException(
-                    "createApiUserAndGetKey() отработал, но пользователь в БД не найден");
+        ApiUser createdUser = getUserFromDb();
+        if (createdUser == null) {
+            throw new IllegalStateException("createApiUserAndGetKey() отработал, но пользователь в БД не найден");
         }
-        return created;
+        return createdUser;
     }
 }
