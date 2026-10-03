@@ -11,9 +11,13 @@ import assertions.Conditions;
 import org.junitpioneer.jupiter.RetryingTest;
 import utils.CreateRandomData;
 import api.crm.enums.StatusCode;
+import api.crm.pojo.request.UserCrmPost;
+import assertions.Conditions;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.RetryingTest;
+import utils.CreateRandomData;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -65,6 +69,4 @@ public class CrmTest extends BaseCrmTest {
                 .should(Conditions.hasBody("firstName", Matchers.equalTo(newUser.getFirstName())))
                 .should(Conditions.hasBody("lastName", Matchers.equalTo(newUser.getLastName())));
     }
-
-
 }

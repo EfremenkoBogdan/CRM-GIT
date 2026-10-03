@@ -1,7 +1,7 @@
 package api.crm.specification;
 
-import config.ConfigProvider;
 import api.crm.db.CrmDbClient;
+import configs.ConfigProvider;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;

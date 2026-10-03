@@ -10,7 +10,6 @@ public enum ApiEndPoints {
     USERS("/users"),
     USER_BY_ID("/users/{id}"),
     PRODUCTS("/products"),
-
     USERS_CRM("/api/v1/User"),
     AUTH_CRM("/api/v1/App/user"),
     ROLE_CRM("/api/v1/Role");

@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import static config.ConfigProvider.TEST_CONFIGURATION;
+import static configs.ConfigProvider.TEST_CONFIGURATION;
 
 @Slf4j
 public class TestSuiteLogger {

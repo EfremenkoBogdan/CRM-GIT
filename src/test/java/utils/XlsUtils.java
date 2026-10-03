@@ -6,6 +6,7 @@ import org.apache.poi.ss.usermodel.*;
 import java.io.File;
 
 public class XlsUtils {
+
     /**
      * Получить весь текст.
      */
@@ -57,7 +58,8 @@ public class XlsUtils {
      * Получить значение конкретной ячейки.
      * \<p>
      * Нумерация строки и столбца начинается с 0.
-     */public static String getCellValue(File file, String sheetName, int rowNumber, int columnNumber) {
+     */
+    public static String getCellValue(File file, String sheetName, int rowNumber, int columnNumber) {
         Sheet sheet = getSheet(file, sheetName);
         Row row = sheet.getRow(rowNumber);
 
@@ -78,7 +80,8 @@ public class XlsUtils {
 
     /**
      * Получить количество листов.
-     */public static int getSheetCount(File file) {
+     */
+    public static int getSheetCount(File file) {
         return new XLS(file)
                 .excel
                 .getNumberOfSheets();
@@ -86,7 +89,8 @@ public class XlsUtils {
 
     /**
      * Получить лист.
-     */private static Sheet getSheet(File file, String sheetName) {
+     */
+    private static Sheet getSheet(File file, String sheetName) {
         Sheet sheet = new XLS(file).excel.getSheet(sheetName);
 
         if (sheet == null) {

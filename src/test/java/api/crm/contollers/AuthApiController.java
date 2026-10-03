@@ -1,7 +1,5 @@
 package api.crm.contollers;
 
-import api.crm.pojo.request.ApiUserPost;
-import api.crm.specification.ApiSpec;
 import api.crm.enums.ApiEndPoints;
 import api.crm.enums.StatusCode;
 import assertions.AssertableResponse;
