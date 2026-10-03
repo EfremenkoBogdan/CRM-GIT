@@ -6,11 +6,11 @@ import org.hamcrest.Matcher;
 
 public class Conditions {
 
-    public static StatusCodeCondition hasStatusCode(int expectedStatusCode) {
+    public static StatusCodeCondition hasStatusCode (int expectedStatusCode) {
         return new StatusCodeCondition(expectedStatusCode);
     }
 
-    public static BodyCondition hasBody(String jsonPath, Matcher<?> matcher) {
-        return new BodyCondition(jsonPath, matcher);
+    public static BodyCondition hasBody (String jsonPath, Matcher<?> matcher) {
+        return new BodyCondition(jsonPath,matcher);
     }
 }

@@ -9,7 +9,7 @@ public class AssertableResponse {
     private final ValidatableResponse response;
 
     public AssertableResponse should(Condition condition) {
-        condition.check(response);
-        return this;
+            condition.check(response);
+            return this;
     }
 }

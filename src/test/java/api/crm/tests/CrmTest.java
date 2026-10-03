@@ -5,6 +5,11 @@ import api.crm.contollers.AuthApiController;
 import api.crm.contollers.CrmUserController;
 import api.crm.db.CrmDbClient;
 import api.crm.dto.ApiUser;
+import api.crm.pojo.request.UserCrmPost;
+import assertions.Condition;
+import assertions.Conditions;
+import org.junitpioneer.jupiter.RetryingTest;
+import utils.CreateRandomData;
 import api.crm.enums.StatusCode;
 import api.crm.pojo.request.UserCrmPost;
 import assertions.Conditions;
@@ -20,7 +25,7 @@ public class CrmTest extends BaseCrmTest {
 
     @Run
     @Test
-    @RetryingTest(maxAttempts = 3, suspendForMs = 500, name = "{displayName} | {index}")
+    @RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
     @DisplayName("Проверка конкретного юзера в списке юзеров")
     public void testGetAllCrmUser() {
         CrmUserController.getAllUsers()
@@ -33,35 +38,35 @@ public class CrmTest extends BaseCrmTest {
 
     @Run
     @Test
-    @RetryingTest(maxAttempts = 3, suspendForMs = 500, name = "{displayName} | {index}")
+    @RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
     @DisplayName("Логин под юзером с API key и проверка ответа")
     public void userProfileTest() {
         AuthApiController.getUser()
-                .statusCode(StatusCode.OK.getCode());
+                .should(Conditions.hasStatusCode(StatusCode.OK.getCode()));
 
         ApiUser dbUser = CrmDbClient.getUserFromDb();
         assertThat(dbUser).as("API-пользователь в БД").isNotNull();
 
         AuthApiController.getUser()
-                .statusCode(StatusCode.OK.getCode())
-                .body("user.userName", Matchers.equalTo(dbUser.getUserName()))
-                .body("user.firstName", Matchers.equalTo(dbUser.getFirstName()))
-                .body("user.lastName", Matchers.equalTo(dbUser.getLastName()))
-                .body("user.type", Matchers.equalTo(dbUser.getType()))
-                .body("user.isActive", Matchers.equalTo(dbUser.getIsActive()));
+                .should(Conditions.hasStatusCode(StatusCode.OK.getCode()))
+                .should(Conditions.hasBody("user.userName", Matchers.equalTo(dbUser.getUserName())))
+                .should(Conditions.hasBody("user.firstName", Matchers.equalTo(dbUser.getFirstName())))
+                .should(Conditions.hasBody("user.lastName", Matchers.equalTo(dbUser.getLastName())))
+                .should(Conditions.hasBody("user.type", Matchers.equalTo(dbUser.getType())))
+                .should(Conditions.hasBody("user.isActive", Matchers.equalTo(dbUser.getIsActive())));
     }
 
 
     @Run
     @Test
-    @RetryingTest(maxAttempts = 3, suspendForMs = 500, name = "{displayName} | {index}")
+    @RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
     @DisplayName("Создание нового пользователя")
     public void testPostCreateNewUser() {
         UserCrmPost newUser = CreateRandomData.getRandomCrmUser();
         CrmUserController.postNewUsers(newUser)
-                .statusCode(StatusCode.OK.getCode())
-                .body("salutationName", Matchers.equalTo(newUser.getSalutationName()))
-                .body("firstName", Matchers.equalTo(newUser.getFirstName()))
-                .body("lastName", Matchers.equalTo(newUser.getLastName()));
+                .should(Conditions.hasStatusCode(StatusCode.OK.getCode()))
+                .should(Conditions.hasBody("salutationName", Matchers.equalTo(newUser.getSalutationName())))
+                .should(Conditions.hasBody("firstName", Matchers.equalTo(newUser.getFirstName())))
+                .should(Conditions.hasBody("lastName", Matchers.equalTo(newUser.getLastName())));
     }
 }
