@@ -24,7 +24,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class CrmTest extends BaseCrmTest {
 
     @Run
-    @Test
     @RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
     @DisplayName("Проверка конкретного юзера в списке юзеров")
     public void testGetAllCrmUser() {
@@ -37,7 +36,6 @@ public class CrmTest extends BaseCrmTest {
     }
 
     @Run
-    @Test
     @RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
     @DisplayName("Логин под юзером с API key и проверка ответа")
     public void userProfileTest() {
@@ -58,7 +56,6 @@ public class CrmTest extends BaseCrmTest {
 
 
     @Run
-    @Test
     @RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
     @DisplayName("Создание нового пользователя")
     public void testPostCreateNewUser() {
