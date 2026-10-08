@@ -10,16 +10,16 @@ import io.restassured.response.ValidatableResponse;
 import static io.restassured.RestAssured.given;
 
 public class CrmUserController {
-
-    @Step("Отправка запроса на получение всех юзеров")
+    @ru.testit.annotations.Step ()
+    //@Step("Отправка запроса на получение всех юзеров")
     public static AssertableResponse getAllUsers() {
         return  new AssertableResponse(given()
                 .spec(ApiSpec.authAdmin())
                 .get(ApiEndPoints.USERS_CRM.getPath())
                 .then());
     }
-
-    @Step("Отправка запроса на создание новых юзеров")
+    @ru.testit.annotations.Step ()
+    //@Step("Отправка запроса на создание новых юзеров")
     public static AssertableResponse postNewUsers(UserCrmPost newUser) {
         return  new AssertableResponse( given()
                 .spec(ApiSpec.authAdmin())

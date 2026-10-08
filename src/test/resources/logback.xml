@@ -48,4 +48,5 @@
         <appender-ref ref="ASYNC_FILE"/>
     </root>
     <logger name="io.qameta.allure.AllureLifecycle" level="OFF"/>
+    <logger name="ru.testit" level="DEBUG"/>
 </configuration>

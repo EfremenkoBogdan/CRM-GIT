@@ -9,6 +9,10 @@ import api.crm.pojo.request.UserCrmPost;
 import assertions.Condition;
 import assertions.Conditions;
 import org.junitpioneer.jupiter.RetryingTest;
+import ru.testit.annotations.ExternalId;
+import ru.testit.annotations.Title;
+import ru.testit.annotations.WorkItemId;
+import ru.testit.annotations.WorkItemIds;
 import utils.CreateRandomData;
 import api.crm.enums.StatusCode;
 import api.crm.pojo.request.UserCrmPost;
@@ -22,10 +26,14 @@ import utils.CreateRandomData;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class CrmTest extends BaseCrmTest {
-
+    @Test
     @Run
-    @RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
-    @DisplayName("Проверка конкретного юзера в списке юзеров")
+    @ExternalId("АТ-3")
+    @WorkItemId("3")
+    @Title("API")
+    //@RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
+    @ru.testit.annotations.DisplayName("Тест - Проверка конкретного юзера в списке юзеров")
+    //@DisplayName("Проверка конкретного юзера в списке юзеров")
     public void testGetAllCrmUser() {
         CrmUserController.getAllUsers()
                 .should(Conditions.hasStatusCode(StatusCode.OK.getCode()))
@@ -35,9 +43,14 @@ public class CrmTest extends BaseCrmTest {
                 .should(Conditions.hasBody("list[0].isActive", Matchers.equalTo(true)));
     }
 
+    @Test
     @Run
-    @RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
-    @DisplayName("Логин под юзером с API key и проверка ответа")
+    @ExternalId("АТ-10")
+    @WorkItemId("10")
+    @Title("API")
+    //@RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
+    @ru.testit.annotations.DisplayName("Тест - Логин под юзером с API key и проверка ответа")
+    //@DisplayName("Логин под юзером с API key и проверка ответа")
     public void userProfileTest() {
         AuthApiController.getUser()
                 .should(Conditions.hasStatusCode(StatusCode.OK.getCode()));
@@ -54,10 +67,14 @@ public class CrmTest extends BaseCrmTest {
                 .should(Conditions.hasBody("user.isActive", Matchers.equalTo(dbUser.getIsActive())));
     }
 
-
+    @Test
+    @ExternalId("АТ-11")
+    @WorkItemId("11")
     @Run
-    @RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
-    @DisplayName("Создание нового пользователя")
+    @Title("API")
+    //@RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
+    @ru.testit.annotations.DisplayName("Тест - Создание нового пользователя")
+    //@DisplayName("Создание нового пользователя")
     public void testPostCreateNewUser() {
         UserCrmPost newUser = CreateRandomData.getRandomCrmUser();
         CrmUserController.postNewUsers(newUser)

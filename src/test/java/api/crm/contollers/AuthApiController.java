@@ -15,16 +15,16 @@ import static api.crm.specification.ApiSpec.authAdmin;
 import static io.restassured.RestAssured.given;
 
 public class AuthApiController {
-
-    @Step("Отправка запроса на авторизацию под API юзером")
+    @ru.testit.annotations.Step ()
+    //@Step("Отправка запроса на авторизацию под API юзером")
     public static AssertableResponse getUser() {
         return  new AssertableResponse( given()
                 .spec(ApiSpec.authApi())
                 .get(ApiEndPoints.AUTH_CRM.getPath())
                 .then());
     }
-
-    @Step("Отправка запроса на создание нового API юзера")
+    @ru.testit.annotations.Step ()
+   // @Step("Отправка запроса на создание нового API юзера")
     public static String createApiUserAndGetKey() {
         ApiUserPost apiUser = CreateRandomData.getRandomApiUser();
 
@@ -40,8 +40,8 @@ public class AuthApiController {
                 .statusCode(StatusCode.OK.getCode())
                 .extract().path("apiKey");
     }
-
-    @Step("Создание роли для API юзера")
+    @ru.testit.annotations.Step ()
+   // @Step("Создание роли для API юзера")
     private static String getRoleIdByName(String roleName) {
         String id = given()
                 .spec(authAdmin())
