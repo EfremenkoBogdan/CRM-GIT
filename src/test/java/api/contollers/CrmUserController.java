@@ -1,9 +1,9 @@
 package api.contollers;
 
 import api.assertions.AssertableResponse;
+import api.enums.ApiEndPoints;
 import api.request.UserCrmPost;
 import api.specification.ApiSpec;
-import enums.ApiEndPoints;
 import io.qameta.allure.Step;
 
 import static io.restassured.RestAssured.given;

@@ -1,12 +1,12 @@
 package docs.fakestore.tests;
 
+import api.enums.StatusCode;
 import docs.fakestore.controllers.ProductController;
 import docs.fakestore.controllers.UserController;
 import docs.fakestore.data.CreateProduct;
 import docs.fakestore.data.CreateRandomData;
 import docs.fakestore.pojo.request.ProductPost;
 import docs.fakestore.pojo.response.productList.Product;
-import enums.StatusCode;
 import extensions.TestLoggingExtension;
 import lombok.extern.slf4j.Slf4j;
 import org.hamcrest.Matchers;

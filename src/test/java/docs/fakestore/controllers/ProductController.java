@@ -1,7 +1,7 @@
 package docs.fakestore.controllers;
 
+import api.enums.ApiEndPoints;
 import docs.fakestore.pojo.request.ProductPost;
-import enums.ApiEndPoints;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;

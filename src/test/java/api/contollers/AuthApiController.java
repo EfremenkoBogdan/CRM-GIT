@@ -1,10 +1,10 @@
 package api.contollers;
 
 import api.assertions.AssertableResponse;
+import api.enums.ApiEndPoints;
+import api.enums.StatusCode;
 import api.request.ApiUserPost;
 import api.specification.ApiSpec;
-import enums.ApiEndPoints;
-import enums.StatusCode;
 import io.qameta.allure.Step;
 import utils.CreateRandomData;
 
