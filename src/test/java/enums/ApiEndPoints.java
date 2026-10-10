@@ -1,4 +1,4 @@
-package api.crm.enums;
+package enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

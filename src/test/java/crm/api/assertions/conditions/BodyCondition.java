@@ -9,8 +9,9 @@ import org.hamcrest.Matcher;
 @AllArgsConstructor
 public class BodyCondition implements Condition {
 
-   private final String jsonPath;
-   private final Matcher<?> matcher;
+    private final String jsonPath;
+    private final Matcher<?> matcher;
+
     @Override
     public void check(ValidatableResponse response) {
         response.body(jsonPath, matcher);

@@ -1,4 +1,4 @@
-package api.crm.specification;
+package specification;
 
 import api.crm.db.CrmDbClient;
 import configs.ConfigProvider;

@@ -8,8 +8,6 @@ import io.restassured.http.*;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
-//import lombok.AllArgsConstructor;
-//import lombok.Data;
 import org.junit.jupiter.api.DisplayName;
 
 import java.io.File;
@@ -43,7 +41,6 @@ public class RestAssured {
     public void httpMethodsExamples() {
         // GET запрос
         given()
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
@@ -57,7 +54,6 @@ public class RestAssured {
                         }
                         """)
                 .contentType(ContentType.JSON)
-                .when()
                 .post("/users")
                 .then()
                 .statusCode(201);
@@ -71,7 +67,6 @@ public class RestAssured {
                         }
                         """)
                 .contentType(ContentType.JSON)
-                .when()
                 .put("/users/2")
                 .then()
                 .statusCode(200);
@@ -84,28 +79,24 @@ public class RestAssured {
                         }
                         """)
                 .contentType(ContentType.JSON)
-                .when()
                 .patch("/users/2")
                 .then()
                 .statusCode(200);
 
         // DELETE запрос
         given()
-                .when()
                 .delete("/users/2")
                 .then()
                 .statusCode(204);
 
         // HEAD запрос (только заголовки, без тела)
         given()
-                .when()
                 .head("/users")
                 .then()
                 .statusCode(200);
 
         // OPTIONS запрос (получение доступных методов)
         given()
-                .when()
                 .options("/users")
                 .then()
                 .statusCode(204);
@@ -121,7 +112,6 @@ public class RestAssured {
         // Query параметры (?page=2)
         given()
                 .queryParam("page", 2)
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200)
@@ -131,7 +121,6 @@ public class RestAssured {
         given()
                 .queryParam("page", 2)
                 .queryParam("per_page", 5)
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
@@ -143,7 +132,6 @@ public class RestAssured {
 
         given()
                 .queryParams(queryParams)
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
@@ -151,7 +139,6 @@ public class RestAssured {
         // Path параметры (/users/{id})
         given()
                 .pathParam("userId", 2)
-                .when()
                 .get("/users/{userId}")
                 .then()
                 .statusCode(200)
@@ -161,7 +148,6 @@ public class RestAssured {
         given()
                 .pathParam("resource", "users")
                 .pathParam("id", 2)
-                .when()
                 .get("/{resource}/{id}")
                 .then()
                 .statusCode(200);
@@ -170,7 +156,6 @@ public class RestAssured {
         given()
                 .formParam("name", "John")
                 .formParam("job", "Developer")
-                .when()
                 .post("/users")
                 .then()
                 .statusCode(201);
@@ -182,7 +167,6 @@ public class RestAssured {
 
         given()
                 .formParams(formParams)
-                .when()
                 .post("/login")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(400)));
@@ -198,7 +182,6 @@ public class RestAssured {
         // Установка Content-Type
         given()
                 .contentType(ContentType.JSON)
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
@@ -206,7 +189,6 @@ public class RestAssured {
         // Установка Accept заголовка
         given()
                 .accept(ContentType.JSON)
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
@@ -214,7 +196,6 @@ public class RestAssured {
         // Установка одного заголовка
         given()
                 .header("User-Agent", "REST-Assured-Tests")
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
@@ -223,7 +204,6 @@ public class RestAssured {
         given()
                 .header("X-Custom-Header", "CustomValue")
                 .header("X-API-Version", "v1")
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
@@ -235,7 +215,6 @@ public class RestAssured {
 
         given()
                 .headers(headers)
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
@@ -248,7 +227,6 @@ public class RestAssured {
 
         given()
                 .headers(customHeaders)
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
@@ -256,7 +234,6 @@ public class RestAssured {
         // Authorization заголовок
         given()
                 .header("Authorization", "Bearer token12345")
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
@@ -280,7 +257,6 @@ public class RestAssured {
         given()
                 .body(jsonBody)
                 .contentType(ContentType.JSON)
-                .when()
                 .post("/users")
                 .then()
                 .statusCode(201);
@@ -293,7 +269,6 @@ public class RestAssured {
         given()
                 .body(user)
                 .contentType(ContentType.JSON)
-                .when()
                 .post("/users")
                 .then()
                 .statusCode(201);
@@ -304,7 +279,7 @@ public class RestAssured {
 //        given()
 //                .body(userObject)
 //                .contentType(ContentType.JSON)
-//                .when()
+//
 //                .post("/users")
 //                .then()
 //                .statusCode(201);
@@ -321,7 +296,6 @@ public class RestAssured {
         given()
                 .body(xmlBody)
                 .contentType(ContentType.XML)
-                .when()
                 .post("/users")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(201)));
@@ -332,7 +306,6 @@ public class RestAssured {
         given()
                 .body(jsonFile)
                 .contentType(ContentType.JSON)
-                .when()
                 .post("/users")
                 .then()
                 .statusCode(201);
@@ -341,7 +314,6 @@ public class RestAssured {
         given()
                 .body("Plain text body")
                 .contentType(ContentType.TEXT)
-                .when()
                 .post("/users")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(201)));
@@ -355,42 +327,36 @@ public class RestAssured {
     public void responseValidationExamples() {
         // Проверка статус-кода
         given()
-                .when()
                 .get("/users/2")
                 .then()
                 .statusCode(200);
 
         // Проверка нескольких возможных статус-кодов
         given()
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(201)));
 
         // Проверка Content-Type заголовка
         given()
-                .when()
                 .get("/users")
                 .then()
                 .contentType(ContentType.JSON);
 
         // Проверка конкретного заголовка
         given()
-                .when()
                 .get("/users")
                 .then()
                 .header("Content-Type", containsString("application/json"));
 
         // Проверка времени ответа
         given()
-                .when()
                 .get("/users")
                 .then()
                 .time(lessThan(5000L), TimeUnit.MILLISECONDS);
 
         // Проверка статус-линии
         given()
-                .when()
                 .get("/users")
                 .then()
                 .statusLine(containsString("200 OK"));
@@ -405,7 +371,6 @@ public class RestAssured {
     public void jsonPathExamples() {
         // Проверка простого поля
         given()
-                .when()
                 .get("/users/2")
                 .then()
                 .body("data.id", equalTo(2))
@@ -414,7 +379,6 @@ public class RestAssured {
 
         // Проверка вложенных полей
         given()
-                .when()
                 .get("/users/2")
                 .then()
                 .body("data.id", equalTo(2))
@@ -423,7 +387,6 @@ public class RestAssured {
 
         // Проверка массива
         given()
-                .when()
                 .get("/users")
                 .then()
                 .body("data", hasSize(greaterThan(0)))
@@ -432,14 +395,12 @@ public class RestAssured {
 
         // Проверка размера массива
         given()
-                .when()
                 .get("/users")
                 .then()
                 .body("data.size()", greaterThan(0));
 
         // Проверка всех элементов массива
         given()
-                .when()
                 .get("/users")
                 .then()
                 .body("data.id", everyItem(notNullValue()))
@@ -447,28 +408,24 @@ public class RestAssured {
 
         // Фильтрация массива
         given()
-                .when()
                 .get("/users")
                 .then()
                 .body("data.findAll { it.id > 1 }.size()", greaterThan(0));
 
         // Извлечение значений из массива
         given()
-                .when()
                 .get("/users")
                 .then()
                 .body("data.collect { it.email }", hasItems(containsString("@")));
 
         // Проверка наличия элемента с конкретным значением
         given()
-                .when()
                 .get("/users")
                 .then()
                 .body("data.find { it.id == 2 }.first_name", notNullValue());
 
         // Множественные проверки
         given()
-                .when()
                 .get("/users/2")
                 .then()
                 .body("data.id", equalTo(2),
@@ -484,7 +441,6 @@ public class RestAssured {
     public void extractionExamples() {
         // Извлечение всего Response объекта
         Response response = given()
-                .when()
                 .get("/users/2")
                 .then()
                 .statusCode(200)
@@ -495,7 +451,6 @@ public class RestAssured {
 
         // Извлечение конкретного значения из JSON
         int userId = given()
-                .when()
                 .get("/users/2")
                 .then()
                 .extract()
@@ -505,7 +460,6 @@ public class RestAssured {
 
         // Извлечение в переменную с типом
         String email = given()
-                .when()
                 .get("/users/2")
                 .then()
                 .extract()
@@ -515,7 +469,6 @@ public class RestAssured {
 
         // Извлечение списка
         List<Integer> userIds = given()
-                .when()
                 .get("/users")
                 .then()
                 .extract()
@@ -525,7 +478,7 @@ public class RestAssured {
 
         // Извлечение в POJO
 //        User userData = given()
-//                .when()
+//
 //                .get("/users/2")
 //                .then()
 //                .extract()
@@ -535,7 +488,6 @@ public class RestAssured {
 
         // Извлечение заголовка
         String contentType = given()
-                .when()
                 .get("/users")
                 .then()
                 .extract()
@@ -545,7 +497,6 @@ public class RestAssured {
 
         // Извлечение всех заголовков
         Headers headers = given()
-                .when()
                 .get("/users")
                 .then()
                 .extract()
@@ -555,7 +506,6 @@ public class RestAssured {
 
         // Использование JsonPath
         io.restassured.path.json.JsonPath jsonPath = given()
-                .when()
                 .get("/users/2")
                 .then()
                 .extract()
@@ -574,7 +524,6 @@ public class RestAssured {
         // Basic Authentication
         given()
                 .auth().basic("username", "password")
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(401)));
@@ -582,7 +531,6 @@ public class RestAssured {
         // Preemptive Basic Authentication (отправляет credentials сразу)
         given()
                 .auth().preemptive().basic("username", "password")
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(401)));
@@ -590,7 +538,6 @@ public class RestAssured {
         // Bearer Token Authentication
         given()
                 .auth().oauth2("your_access_token_here")
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(401)));
@@ -598,7 +545,6 @@ public class RestAssured {
         // Bearer Token через заголовок (альтернатива)
         given()
                 .header("Authorization", "Bearer your_token_here")
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(401)));
@@ -606,7 +552,6 @@ public class RestAssured {
         // API Key аутентификация (через header)
         given()
                 .header("X-API-Key", "your_api_key_here")
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(401)));
@@ -614,7 +559,6 @@ public class RestAssured {
         // API Key аутентификация (через query параметр)
         given()
                 .queryParam("api_key", "your_api_key_here")
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(401)));
@@ -622,7 +566,6 @@ public class RestAssured {
         // Digest Authentication
         given()
                 .auth().digest("username", "password")
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(401)));
@@ -630,7 +573,6 @@ public class RestAssured {
         // Form Authentication
         given()
                 .auth().form("username", "password")
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(302)));
@@ -645,7 +587,6 @@ public class RestAssured {
         // Установка одного cookie
         given()
                 .cookie("session_id", "abc123")
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
@@ -654,7 +595,6 @@ public class RestAssured {
         given()
                 .cookie("session_id", "abc123")
                 .cookie("user_token", "xyz789")
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
@@ -669,7 +609,6 @@ public class RestAssured {
 
         given()
                 .cookie(sessionCookie)
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
@@ -682,14 +621,12 @@ public class RestAssured {
 
         given()
                 .cookies(cookies)
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
 
         // Извлечение cookie из ответа
         String cookieValue = given()
-                .when()
                 .get("/users")
                 .then()
                 .extract()
@@ -697,14 +634,12 @@ public class RestAssured {
 
         // Проверка наличия cookie
         given()
-                .when()
                 .get("/users")
                 .then()
                 .cookie("session_id", notNullValue());
 
         // Извлечение всех cookies
         Map<String, String> allCookies = given()
-                .when()
                 .get("/users")
                 .then()
                 .extract()
@@ -724,7 +659,6 @@ public class RestAssured {
 
         given()
                 .multiPart("file", file)
-                .when()
                 .post("/upload")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(201), equalTo(404)));
@@ -732,7 +666,6 @@ public class RestAssured {
         // Загрузка файла с указанием MIME типа
         given()
                 .multiPart("file", file, "text/plain")
-                .when()
                 .post("/upload")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(201), equalTo(404)));
@@ -744,7 +677,6 @@ public class RestAssured {
         given()
                 .multiPart("files", file1)
                 .multiPart("files", file2)
-                .when()
                 .post("/upload")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(201), equalTo(404)));
@@ -754,7 +686,6 @@ public class RestAssured {
                 .multiPart("file", file)
                 .multiPart("description", "Test file upload")
                 .multiPart("category", "documents")
-                .when()
                 .post("/upload")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(201), equalTo(404)));
@@ -764,7 +695,6 @@ public class RestAssured {
 
         given()
                 .multiPart("file", "filename.txt", bytes)
-                .when()
                 .post("/upload")
                 .then()
                 .statusCode(anyOf(equalTo(200), equalTo(201), equalTo(404)));
@@ -788,7 +718,6 @@ public class RestAssured {
         // Использование Request Specification
         given()
                 .spec(requestSpec)
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
@@ -802,7 +731,6 @@ public class RestAssured {
 
         // Использование Response Specification
         given()
-                .when()
                 .get("/users")
                 .then()
                 .spec(responseSpec);
@@ -830,14 +758,12 @@ public class RestAssured {
         given()
                 .filter(new RequestLoggingFilter())
                 .filter(new ResponseLoggingFilter())
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);
 
         // Логирование запроса и ответа
         given().log().all()
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200)
@@ -846,7 +772,6 @@ public class RestAssured {
         // Логирование только при ошибке
         given()
                 .log().ifValidationFails()
-                .when()
                 .get("/users")
                 .then()
                 .statusCode(200);

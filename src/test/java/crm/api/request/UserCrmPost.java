@@ -1,4 +1,4 @@
-package api.crm.pojo.request;
+package request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

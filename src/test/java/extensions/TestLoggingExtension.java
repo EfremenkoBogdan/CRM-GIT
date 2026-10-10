@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class    TestLoggingExtension implements BeforeAllCallback, AfterAllCallback, BeforeEachCallback, TestWatcher {
+public class TestLoggingExtension implements BeforeAllCallback, AfterAllCallback, BeforeEachCallback, TestWatcher {
 
     private final List<String> passedTests = new CopyOnWriteArrayList<>();
     private final List<String> failedTests = new CopyOnWriteArrayList<>();

@@ -7,18 +7,18 @@ import org.openqa.selenium.OutputType;
 
 public class AllureAttachments {
 
-    @Attachment (value = "Текущий URL", type = "text/plain")
-    public static String attachCurrentUrl(){
+    @Attachment(value = "Текущий URL", type = "text/plain")
+    public static String attachCurrentUrl() {
         return WebDriverRunner.getWebDriver().getCurrentUrl();
     }
 
     @Attachment(value = "Скриншот страницы", type = "image/png")
-    public static byte[] attachScreenshot (){
+    public static byte[] attachScreenshot() {
         return Selenide.screenshot(OutputType.BYTES);
     }
 
-    @Attachment (value = "Исходный код", type = "text/plain")
-    public static String attachSourceCode(){
+    @Attachment(value = "Исходный код", type = "text/plain")
+    public static String attachSourceCode() {
         return WebDriverRunner.getWebDriver().getPageSource();
     }
 }

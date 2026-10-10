@@ -40,8 +40,6 @@
         <includeCallerData>false</includeCallerData>
     </appender>
 
-    <!-- <logger name="com.example.myapp" level="DEBUG"/> -->
-
     <!-- Корневой логгер -->
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>

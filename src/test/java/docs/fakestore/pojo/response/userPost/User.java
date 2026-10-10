@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties (ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
     private Address address;
     private int id;
@@ -18,6 +18,6 @@ public class User {
     private String password;
     private Name name;
     private String phone;
-    @JsonProperty ("__v")
+    @JsonProperty("__v")
     private int v;
 }

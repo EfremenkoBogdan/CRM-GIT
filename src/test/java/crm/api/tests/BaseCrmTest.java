@@ -1,4 +1,4 @@
-package api.crm.tests;
+package tests;
 
 import configs.ConfigProvider;
 import extensions.TestLoggingExtension;

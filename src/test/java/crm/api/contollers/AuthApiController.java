@@ -1,30 +1,30 @@
-package api.crm.contollers;
+package contollers;
 
-import api.crm.enums.ApiEndPoints;
-import api.crm.enums.StatusCode;
-import api.crm.pojo.request.ApiUserPost;
-import api.crm.specification.ApiSpec;
 import assertions.AssertableResponse;
+import enums.ApiEndPoints;
+import enums.StatusCode;
 import io.qameta.allure.Step;
-import io.restassured.response.ValidatableResponse;
+import request.ApiUserPost;
+import specification.ApiSpec;
 import utils.CreateRandomData;
 
 import java.util.List;
 
-import static api.crm.specification.ApiSpec.authAdmin;
 import static io.restassured.RestAssured.given;
+import static specification.ApiSpec.authAdmin;
 
 public class AuthApiController {
-    @ru.testit.annotations.Step ()
-    //@Step("Отправка запроса на авторизацию под API юзером")
+    @ru.testit.annotations.Step()
+    @Step("Отправка запроса на авторизацию под API юзером")
     public static AssertableResponse getUser() {
-        return  new AssertableResponse( given()
+        return new AssertableResponse(given()
                 .spec(ApiSpec.authApi())
                 .get(ApiEndPoints.AUTH_CRM.getPath())
                 .then());
     }
-    @ru.testit.annotations.Step ()
-   // @Step("Отправка запроса на создание нового API юзера")
+
+    @ru.testit.annotations.Step()
+    @Step("Отправка запроса на создание нового API юзера")
     public static String createApiUserAndGetKey() {
         ApiUserPost apiUser = CreateRandomData.getRandomApiUser();
 
@@ -34,21 +34,20 @@ public class AuthApiController {
         return given()
                 .spec(authAdmin())
                 .body(apiUser)
-                .when()
                 .post(ApiEndPoints.USERS_CRM.getPath())
                 .then()
                 .statusCode(StatusCode.OK.getCode())
                 .extract().path("apiKey");
     }
-    @ru.testit.annotations.Step ()
-   // @Step("Создание роли для API юзера")
+
+    @ru.testit.annotations.Step()
+    @Step("Создание роли для API юзера")
     private static String getRoleIdByName(String roleName) {
         String id = given()
                 .spec(authAdmin())
                 .queryParam("where[0][type]", "equals")
                 .queryParam("where[0][attribute]", "name")
                 .queryParam("where[0][value]", roleName)
-                .when()
                 .get(ApiEndPoints.ROLE_CRM.getPath())
                 .then()
                 .statusCode(StatusCode.OK.getCode())

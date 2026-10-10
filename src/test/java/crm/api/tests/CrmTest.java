@@ -1,26 +1,18 @@
-package api.crm.tests;
+package tests;
 
 import annotations.Run;
-import api.crm.contollers.AuthApiController;
-import api.crm.contollers.CrmUserController;
 import api.crm.db.CrmDbClient;
-import api.crm.dto.ApiUser;
-import api.crm.pojo.request.UserCrmPost;
-import assertions.Condition;
 import assertions.Conditions;
-import org.junitpioneer.jupiter.RetryingTest;
+import contollers.AuthApiController;
+import contollers.CrmUserController;
+import dto.ApiUser;
+import enums.StatusCode;
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Test;
+import request.UserCrmPost;
 import ru.testit.annotations.ExternalId;
 import ru.testit.annotations.Title;
 import ru.testit.annotations.WorkItemId;
-import ru.testit.annotations.WorkItemIds;
-import utils.CreateRandomData;
-import api.crm.enums.StatusCode;
-import api.crm.pojo.request.UserCrmPost;
-import assertions.Conditions;
-import org.hamcrest.Matchers;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junitpioneer.jupiter.RetryingTest;
 import utils.CreateRandomData;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

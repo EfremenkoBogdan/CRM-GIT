@@ -1,7 +1,7 @@
 package utils;
 
-import api.crm.pojo.request.ApiUserPost;
-import api.crm.pojo.request.UserCrmPost;
+import request.ApiUserPost;
+import request.UserCrmPost;
 
 import java.util.List;
 
