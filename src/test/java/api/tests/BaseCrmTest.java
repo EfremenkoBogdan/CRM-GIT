@@ -1,4 +1,4 @@
-package tests;
+package api.tests;
 
 import configs.ConfigProvider;
 import extensions.TestLoggingExtension;

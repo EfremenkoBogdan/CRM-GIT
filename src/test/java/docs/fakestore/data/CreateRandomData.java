@@ -1,7 +1,7 @@
 package docs.fakestore.data;
 
+import api.request.UserCrmPost;
 import docs.fakestore.pojo.request.UserPost;
-import request.UserCrmPost;
 
 import static utils.RandomUtils.FAKER;
 

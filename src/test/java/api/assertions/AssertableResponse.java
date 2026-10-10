@@ -1,4 +1,4 @@
-package assertions;
+package api.assertions;
 
 import io.restassured.response.ValidatableResponse;
 import lombok.AllArgsConstructor;

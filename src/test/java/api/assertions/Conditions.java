@@ -1,7 +1,7 @@
-package assertions;
+package api.assertions;
 
-import assertions.conditions.BodyCondition;
-import assertions.conditions.StatusCodeCondition;
+import api.assertions.conditions.BodyCondition;
+import api.assertions.conditions.StatusCodeCondition;
 import org.hamcrest.Matcher;
 
 public class Conditions {

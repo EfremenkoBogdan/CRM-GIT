@@ -1,7 +1,7 @@
 package utils;
 
-import request.ApiUserPost;
-import request.UserCrmPost;
+import api.request.ApiUserPost;
+import api.request.UserCrmPost;
 
 import java.util.List;
 

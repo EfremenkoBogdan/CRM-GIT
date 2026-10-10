@@ -1,15 +1,16 @@
-package tests;
+package api.tests;
 
 import annotations.Run;
-import api.crm.db.CrmDbClient;
-import assertions.Conditions;
-import contollers.AuthApiController;
-import contollers.CrmUserController;
-import dto.ApiUser;
+import api.assertions.Conditions;
+import api.contollers.AuthApiController;
+import api.contollers.CrmUserController;
+import api.dto.ApiUser;
+import api.request.UserCrmPost;
+import db.CrmDbClient;
 import enums.StatusCode;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import request.UserCrmPost;
 import ru.testit.annotations.ExternalId;
 import ru.testit.annotations.Title;
 import ru.testit.annotations.WorkItemId;
@@ -25,7 +26,7 @@ public class CrmTest extends BaseCrmTest {
     @Title("API")
     //@RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
     @ru.testit.annotations.DisplayName("Тест - Проверка конкретного юзера в списке юзеров")
-    //@DisplayName("Проверка конкретного юзера в списке юзеров")
+    @DisplayName("Проверка конкретного юзера в списке юзеров")
     public void testGetAllCrmUser() {
         CrmUserController.getAllUsers()
                 .should(Conditions.hasStatusCode(StatusCode.OK.getCode()))
@@ -42,7 +43,7 @@ public class CrmTest extends BaseCrmTest {
     @Title("API")
     //@RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
     @ru.testit.annotations.DisplayName("Тест - Логин под юзером с API key и проверка ответа")
-    //@DisplayName("Логин под юзером с API key и проверка ответа")
+    @DisplayName("Логин под юзером с API key и проверка ответа")
     public void userProfileTest() {
         AuthApiController.getUser()
                 .should(Conditions.hasStatusCode(StatusCode.OK.getCode()));
@@ -66,7 +67,7 @@ public class CrmTest extends BaseCrmTest {
     @Title("API")
     //@RetryingTest(maxAttempts = 3, suspendForMs = 500, name  = "{displayName} | {index}")
     @ru.testit.annotations.DisplayName("Тест - Создание нового пользователя")
-    //@DisplayName("Создание нового пользователя")
+    @DisplayName("Создание нового пользователя")
     public void testPostCreateNewUser() {
         UserCrmPost newUser = CreateRandomData.getRandomCrmUser();
         CrmUserController.postNewUsers(newUser)

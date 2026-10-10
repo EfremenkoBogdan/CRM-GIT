@@ -1,6 +1,6 @@
-package assertions.conditions;
+package api.assertions.conditions;
 
-import assertions.Condition;
+import api.assertions.Condition;
 import io.restassured.response.ValidatableResponse;
 import lombok.AllArgsConstructor;
 import org.hamcrest.Matcher;

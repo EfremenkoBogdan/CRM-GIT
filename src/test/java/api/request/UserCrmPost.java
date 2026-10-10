@@ -1,4 +1,4 @@
-package request;
+package api.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

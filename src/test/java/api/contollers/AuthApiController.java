@@ -1,17 +1,17 @@
-package contollers;
+package api.contollers;
 
-import assertions.AssertableResponse;
+import api.assertions.AssertableResponse;
+import api.request.ApiUserPost;
+import api.specification.ApiSpec;
 import enums.ApiEndPoints;
 import enums.StatusCode;
 import io.qameta.allure.Step;
-import request.ApiUserPost;
-import specification.ApiSpec;
 import utils.CreateRandomData;
 
 import java.util.List;
 
+import static api.specification.ApiSpec.authAdmin;
 import static io.restassured.RestAssured.given;
-import static specification.ApiSpec.authAdmin;
 
 public class AuthApiController {
     @ru.testit.annotations.Step()

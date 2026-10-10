@@ -1,10 +1,10 @@
-package contollers;
+package api.contollers;
 
-import assertions.AssertableResponse;
+import api.assertions.AssertableResponse;
+import api.request.UserCrmPost;
+import api.specification.ApiSpec;
 import enums.ApiEndPoints;
 import io.qameta.allure.Step;
-import request.UserCrmPost;
-import specification.ApiSpec;
 
 import static io.restassured.RestAssured.given;
 
