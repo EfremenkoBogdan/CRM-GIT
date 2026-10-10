@@ -1,4 +1,4 @@
-package ui.crm.pages;
+package ui.pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Step;

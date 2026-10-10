@@ -1,4 +1,4 @@
-package ui.crm.tests;
+package ui.tests;
 
 import com.codeborne.selenide.Selenide;
 import configs.DriverConfiguration;
@@ -7,8 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.extension.ExtendWith;
-
-import static com.codeborne.selenide.Selenide.open;
 
 @Slf4j
 @ExtendWith({TestLoggingExtension.class})

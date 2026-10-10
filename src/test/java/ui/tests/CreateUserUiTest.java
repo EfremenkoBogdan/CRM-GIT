@@ -1,12 +1,12 @@
-package ui.crm.tests;
+package ui.tests;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ui.crm.pages.LoginPage;
-import ui.crm.pages.MainPage;
-import ui.crm.pages.UserPage;
-import ui.crm.pages.UsersListPage;
+import ui.pages.LoginPage;
+import ui.pages.MainPage;
+import ui.pages.UserPage;
+import ui.pages.UsersListPage;
 
 import java.io.File;
 

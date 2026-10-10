@@ -1,11 +1,11 @@
-package ui.crm.tests;
+package ui.tests;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ui.crm.pages.DocumentPage;
-import ui.crm.pages.LoginPage;
+import ui.pages.DocumentPage;
+import ui.pages.LoginPage;
 import utils.PDFUtils;
 
 import java.io.File;
