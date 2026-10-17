@@ -107,6 +107,11 @@ jobs:
 
           # Docker start -a may return a nonzero code. Preserve the test output.
           docker start -a "$TEST_CONTAINER" || true
+        
+          echo "Waiting for Test IT syncstorage to complete..."
+          docker exec "$TEST_CONTAINER" curl -s "http://localhost:49153/wait-completion" || true
+          echo "Syncstorage wait finished."
+          
           EXIT_CODE="$(docker inspect --format '{{.State.ExitCode}}' "$TEST_CONTAINER")"
           echo "Tests exit code: $EXIT_CODE"
 
