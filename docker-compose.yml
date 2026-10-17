@@ -12,11 +12,11 @@ services:
     volumes:
       - espocrm-db:/var/lib/mysql
     healthcheck:
-      test: [ "CMD", "healthcheck.sh", "--connect", "--innodb_initialized" ]
+      test: [ "CMD", "bin/command", "app-check" ]
       interval: 10s
       timeout: 5s
-      retries: 10
-      start_period: 30s
+      retries: 30
+      start_period: 60s
     networks:
       - espocrm_net
 
