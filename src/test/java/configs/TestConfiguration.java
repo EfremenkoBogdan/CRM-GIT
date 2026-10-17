@@ -2,7 +2,11 @@ package configs;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources("classpath:configs/test.properties")
+@Config.Sources({
+        "system:properties",
+        "classpath:configs/test.properties"
+})
+@Config.LoadPolicy(Config.LoadType.MERGE)
 public interface TestConfiguration extends Config {
     String baseUiUrl();
 
