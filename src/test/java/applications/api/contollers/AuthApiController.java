@@ -61,9 +61,6 @@ public class AuthApiController {
         }
 
         // 2. Если роли нет — создаём её с минимальным набором полей
-        System.out.println("=== ROLE NOT FOUND, TRYING TO CREATE: " + roleName + " ===");
-
-        // Оставляем только те поля, которые точно проходят валидацию
         Map<String, Object> newRole = Map.of(
                 "name", roleName
         );
@@ -74,12 +71,6 @@ public class AuthApiController {
                 .post(ApiEndPoints.ROLE_CRM.getPath())
                 .then()
                 .extract().response();
-
-        // Логируем ответ для отладки
-        System.out.println("=== CREATE ROLE RESPONSE ===");
-        System.out.println("Status: " + response.getStatusCode());
-        System.out.println("Body: " + response.getBody().asString());
-        System.out.println("============================");
 
         if (response.getStatusCode() == 200) {
             return response.path("id");
