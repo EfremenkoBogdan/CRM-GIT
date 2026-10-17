@@ -1,13 +1,13 @@
 package db;
 
-import api.dto.ApiUser;
+import applications.api.dto.ApiUser;
 import configs.ConfigProvider;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
 
-import static api.contollers.AuthApiController.createApiUserAndGetKey;
+import static applications.api.contollers.AuthApiController.createApiUserAndGetKey;
 
 @Slf4j
 public class CrmDbClient {

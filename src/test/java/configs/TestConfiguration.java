@@ -24,6 +24,8 @@ public interface TestConfiguration extends Config {
 
     String crmApiUrl();
 
+    String baseApiUrl();
+
     String authLogin();
 
     String authPassword();
