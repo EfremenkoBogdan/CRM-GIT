@@ -73,22 +73,6 @@ jobs:
             -fsS --retry 10 --retry-delay 3 \
             http://espocrm/ -o /dev/null
 
-      - name: Test IT - Create Test Run
-        id: create-testrun
-        run: |
-          pip install testit-cli
-          
-          # Создаем прогон и сохраняем ID в файл
-          testit testrun create \
-            --url "https://team-t325.testit.software" \
-            --token "${{ secrets.TMS_TOKEN }}" \
-            --project-id "01a100d8-fb2a-7975-b8e0-8002481240c7" \
-            --testrun-name "GitHub Smoke Run" \
-            --output ./testrun.id
-          
-          # Читаем ID из файла и сохраняем в переменную для следующих шагов
-          echo "TEST_RUN_ID=$(cat ./testrun.id)" >> $GITHUB_ENV
-
       # ==========================================
       # STAGE 2. RUN TEST
       # ==========================================
@@ -111,8 +95,6 @@ jobs:
             -v "${MAVEN_CACHE_VOLUME}:/root/.m2" \
             "$TEST_IMAGE" \
             mvn -B -ntp test \
-            "-Dtestit.testRunId=${TEST_RUN_ID}" \
-            "-Dtestit.adapterMode=1" \
             "-DbaseUiUrl=${CRM_URL}" \
             "-DcrmApiUrl=${CRM_URL}" \
             "-DdbUrl=jdbc:mariadb://espocrm-db:3306/espocrm" \
@@ -125,11 +107,6 @@ jobs:
 
           # Docker start -a may return a nonzero code. Preserve the test output.
           docker start -a "$TEST_CONTAINER" || true
-        
-          echo "Waiting for Test IT syncstorage to complete..."
-          docker exec "$TEST_CONTAINER" curl -s "http://localhost:49153/wait-completion" || true
-          echo "Syncstorage wait finished."
-          
           EXIT_CODE="$(docker inspect --format '{{.State.ExitCode}}' "$TEST_CONTAINER")"
           echo "Tests exit code: $EXIT_CODE"
 
