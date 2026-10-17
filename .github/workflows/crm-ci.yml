@@ -73,6 +73,20 @@ jobs:
             -fsS --retry 10 --retry-delay 3 \
             http://espocrm/ -o /dev/null
 
+      - name: Test IT - Create Test Run
+        id: create-testrun
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq
+          pip install testit-cli
+          
+          RESPONSE=$(testit testrun create \
+            --url "https://team-t325.testit.software" \
+            --token "${{ secrets.TMS_TOKEN }}" \
+            --project-id "01a100d8-fb2a-7975-b8e0-8002481240c7" \
+            --testrun-name "GitHub Smoke Run")
+          
+          echo "TEST_RUN_ID=$(echo $RESPONSE | jq -r '.id')" >> $GITHUB_ENV
+
       # ==========================================
       # STAGE 2. RUN TEST
       # ==========================================
@@ -95,6 +109,8 @@ jobs:
             -v "${MAVEN_CACHE_VOLUME}:/root/.m2" \
             "$TEST_IMAGE" \
             mvn -B -ntp test \
+            "-Dtestit.testRunId=${TEST_RUN_ID}" \
+            "-Dtestit.adapterMode=1" \
             "-DbaseUiUrl=${CRM_URL}" \
             "-DcrmApiUrl=${CRM_URL}" \
             "-DdbUrl=jdbc:mariadb://espocrm-db:3306/espocrm" \
