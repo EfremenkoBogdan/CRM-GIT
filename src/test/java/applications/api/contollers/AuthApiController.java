@@ -30,7 +30,7 @@ public class AuthApiController {
     public static String createApiUserAndGetKey() {
         ApiUserPost apiUser = CreateRandomData.getRandomApiUser();
 
-        String roleId = getRoleIdByName("Admin");
+        String roleId = getRoleIdByName("admin");
         apiUser.setRolesIds(List.of(roleId));
 
         return given()
@@ -54,23 +54,21 @@ public class AuthApiController {
                 .get(ApiEndPoints.ROLE_CRM.getPath())
                 .then()
                 .statusCode(StatusCode.OK.getCode())
-                .extract().path("list.id");
+                .extract().jsonPath().getList("list.id");
 
         if (!ids.isEmpty()) {
-            System.out.println("=== ROLE FOUND: " + roleName + " ===");
             return ids.get(0);
         }
 
-        // 2. Если роли нет — создаём её
+        // 2. Если роли нет — создаём её с минимальным набором полей
         System.out.println("=== ROLE NOT FOUND, TRYING TO CREATE: " + roleName + " ===");
 
+        // Оставляем только те поля, которые точно проходят валидацию
         Map<String, Object> newRole = Map.of(
                 "name", roleName,
                 "assignmentPermission", "all",
                 "userPermission", "all",
-                "exportPermission", "all",
                 "massUpdatePermission", "all",
-                "dataPrivacyPermission", "yes",
                 "userActionsPermission", "all"
         );
 
@@ -81,7 +79,7 @@ public class AuthApiController {
                 .then()
                 .extract().response();
 
-        // ВЫВОДИМ ОТВЕТ В ЛОГ, ЧТОБЫ УВИДЕТЬ ПРИЧИНУ
+        // Логируем ответ для отладки
         System.out.println("=== CREATE ROLE RESPONSE ===");
         System.out.println("Status: " + response.getStatusCode());
         System.out.println("Body: " + response.getBody().asString());
@@ -101,7 +99,7 @@ public class AuthApiController {
                     .get(ApiEndPoints.ROLE_CRM.getPath())
                     .then()
                     .statusCode(200)
-                    .extract().jsonPath().getList("list.id"); // <-- ИСПОЛЬЗУЕМ getList
+                    .extract().jsonPath().getList("list.id");
 
             if (!retryIds.isEmpty()) {
                 return retryIds.get(0);
@@ -110,7 +108,7 @@ public class AuthApiController {
             }
         }
 
-        // Если не 200 и не 409, выбрасываем ошибку с текстом ответа
+        // Если не 200 и не 409 — выбрасываем ошибку с текстом ответа
         throw new IllegalStateException("Не удалось создать роль. Код: " + response.getStatusCode() + ". Ответ: " + response.getBody().asString());
     }
 }
