@@ -76,16 +76,18 @@ jobs:
       - name: Test IT - Create Test Run
         id: create-testrun
         run: |
-          sudo apt-get update && sudo apt-get install -y jq
           pip install testit-cli
           
-          RESPONSE=$(testit testrun create \
+          # Создаем прогон и сохраняем ID в файл
+          testit testrun create \
             --url "https://team-t325.testit.software" \
             --token "${{ secrets.TMS_TOKEN }}" \
             --project-id "01a100d8-fb2a-7975-b8e0-8002481240c7" \
-            --testrun-name "GitHub Smoke Run")
+            --testrun-name "GitHub Smoke Run" \
+            --output ./testrun.id
           
-          echo "TEST_RUN_ID=$(echo $RESPONSE | jq -r '.id')" >> $GITHUB_ENV
+          # Читаем ID из файла и сохраняем в переменную для следующих шагов
+          echo "TEST_RUN_ID=$(cat ./testrun.id)" >> $GITHUB_ENV
 
       # ==========================================
       # STAGE 2. RUN TEST
