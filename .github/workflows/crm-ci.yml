@@ -98,7 +98,6 @@ jobs:
             "-Dselenide.remote=http://selenium:4444/wd/hub" \
             "-Dheadless=true" 
 
-          # Copy repository contents to /workspace inside the test container.
           docker cp ./. "$TEST_CONTAINER:/workspace/"
 
           # Docker start -a may return a nonzero code. Preserve the test output.
