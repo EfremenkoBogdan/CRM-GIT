@@ -66,10 +66,10 @@ public class AuthApiController {
         // Оставляем только те поля, которые точно проходят валидацию
         Map<String, Object> newRole = Map.of(
                 "name", roleName,
-                "assignmentPermission", "yes", // Было "all"
-                "userPermission", "yes",       // Было "all"
-                "massUpdatePermission", "yes", // Было "all"
-                "userActionsPermission", "yes" // Было "all"
+                "assignmentPermission", "all", // Возвращаем "all" — это валидный уровень доступа
+                "userPermission", "yes",
+                "massUpdatePermission", "yes",
+                "userActionsPermission", "yes"
         );
 
         Response response = given()
