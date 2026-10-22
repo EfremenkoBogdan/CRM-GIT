@@ -1,6 +1,7 @@
 package applications.ui.tests;
 
 import annotations.Run;
+import com.codeborne.selenide.Condition;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
@@ -12,7 +13,9 @@ import ru.testit.annotations.Title;
 import ru.testit.annotations.WorkItemId;
 
 import java.io.File;
+import java.time.Duration;
 
+import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 @Slf4j
 public class UploadPdfUiTest extends BaseUiTest {
@@ -37,5 +40,19 @@ public class UploadPdfUiTest extends BaseUiTest {
         open("#Document", DocumentPage.class)
                 .clickCreateDocumentBtn().attachFile(file)
                 .clickSaveBtn();
+    }
+
+    private File ensureAndDownload(String fileName, File localFile) {
+        DocumentPage page = open("#Document", DocumentPage.class);
+        if (!page.hasDocument(fileName)) {
+            log.info("Документ '{}' не найден — загружаем", fileName);
+            page.uploadDocument(localFile);
+            page = open("#Document", DocumentPage.class);
+            $x("//td[@data-name='file']//a[@title='%s']".formatted(fileName))
+                    .shouldBe(Condition.visible, Duration.ofSeconds(15));
+        } else {
+            log.info("Документ '{}' уже есть — скачиваем", fileName);
+        }
+        return page.clickDownloadBtn(fileName);
     }
 }

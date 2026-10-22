@@ -19,6 +19,8 @@ import static com.codeborne.selenide.Selenide.open;
     @Slf4j
     public class DownloadXlsUiTest extends BaseUiTest {
 
+        private final File xlsFile = new File("src/test/resources/data/statement.xls");
+
         @Test
         @ExternalId("АТ-62")
         @WorkItemId("62")
@@ -35,7 +37,7 @@ import static com.codeborne.selenide.Selenide.open;
                     .pressButtonWithoutError();
 
             File file = open("#Document", DocumentPage.class)
-                    .clickDownloadBtn("statement.xls"); // указываем имя XLS-файла
+                    .ensureAndDownload("statement.xls", xlsFile);
 
             String text = XlsUtils.getText(file);
             Assertions.assertTrue(text.contains("сюда. Интернет-банк"));

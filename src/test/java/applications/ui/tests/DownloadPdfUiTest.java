@@ -21,6 +21,8 @@ import static com.codeborne.selenide.Selenide.open;
 @Slf4j
 public class DownloadPdfUiTest extends BaseUiTest {
 
+    private final File pdfFile = new File("src/test/resources/data/selenide-file-xls-pdf.pdf");
+
     @Test
     @ExternalId("АТ-61")
     @WorkItemId("61")
@@ -37,7 +39,7 @@ public class DownloadPdfUiTest extends BaseUiTest {
                 .pressButtonWithoutError();
 
         File file = open("#Document", DocumentPage.class)
-                .clickDownloadBtn("selenide-file-xls-pdf.pdf"); // указываем имя PDF-файла
+                .ensureAndDownload("selenide-file-xls-pdf.pdf", pdfFile);
 
         Assertions.assertTrue(PDFUtils.getText(file).contains("2. Скачивание файла через Selenide"));
         Assertions.assertEquals(9, PDFUtils.getCountPage(file));
